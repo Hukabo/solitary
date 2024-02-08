@@ -1,0 +1,1 @@
+# solitary-s-recipe
