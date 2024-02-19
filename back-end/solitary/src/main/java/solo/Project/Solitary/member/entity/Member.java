@@ -1,4 +1,4 @@
-package solo.Project.Solitary.entity;
+package solo.Project.Solitary.member.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "member")
 @Getter
 @Builder
 @AllArgsConstructor
@@ -30,9 +30,10 @@ public class Member {
     @Column(nullable = false)
     private String memberName;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(value = EnumType.STRING)
-    private MemberRating memberRating;
+    @Builder.Default
+    private MemberRating memberRating = MemberRating.BRONZE;
 
     @CreationTimestamp
     @Column(nullable = false, length = 20, updatable = false)
