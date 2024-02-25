@@ -26,9 +26,9 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postMember(@RequestBody MemberPostDto requestBody) {
+    public ResponseEntity<?> postMember(@Valid @RequestBody MemberPostDto requestBody) {
         Member member = mapper.memberPostDtoToMember(requestBody);
-        memberService.addMember(member);
+        memberService.createMember(member);
 
         return new ResponseEntity<>(mapper.memberToResponseDto(member), HttpStatus.CREATED);
     }
@@ -45,5 +45,12 @@ public class MemberController {
         Member member = memberService.updateMember(mapper.memberPatchDtoToMember(memberPatchDto));
 
         return new ResponseEntity<>(mapper.memberToResponseDto(member), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{member-id}")
+    public ResponseEntity<?> deleteMember(@PathVariable("member-id") @Positive long memberId) {
+        memberService.deleteMember(memberId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -17,7 +17,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member addMember(Member member) {
+    public Member createMember(Member member) {
         verifyExistMember(member.getEmail());
 
         return memberRepository.save(member);
