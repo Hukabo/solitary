@@ -11,13 +11,14 @@ import lombok.Setter;
 public class MemberDto {
     @Data
     public static class MemberPostDto {
-        @Email
+        @NotBlank(message = "이메일을 입력해주세요.")
+        @Email(message = "올바른 이메일을 입력해주세요.")
         private String email;
 
-        @NotBlank(message = "공백은 불가능합니다.")
+        @NotBlank(message = "이름을 입력해주세요.")
         private String memberName;
 
-        @NotBlank(message = "공백은 불가능합니다.")
+        @NotBlank(message = "비밀번호를 입력해주세요.")
         private String password;
     }
 
@@ -26,10 +27,10 @@ public class MemberDto {
         @Positive
         private long memberId;
 
-        @NotBlank(message = "공백은 불가능합니다.")
+        @NotBlank(message = "수정하실 이름을 입력해주세요.")
         private String memberName;
 
-        @NotBlank(message = "공백은 불가능합니다.")
+        @NotBlank(message = "수정하실 비밀번호를 입력해주세요.")
         private String password;
     }
 
