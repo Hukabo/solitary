@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "0fe6cd620fe4f7b0f937ca5ed7b40a9ac9e8f87bddb26e63eb83418e443f248a";
+    private static final String SECRET_KEY = "0fe6cd620fe4f7b0f937ca5ed7b40a9ac9e8f87bddb26e63eb83418e443f248a"; // 추후에 환경 변수로 move
 
     public String extractUserEmail(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -41,18 +41,18 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) { // 추가적인 claim 포함 토큰 생성
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) { // 일반적인 토큰 생성
         return generateToken(new HashMap<>(), userDetails);
     }
 
