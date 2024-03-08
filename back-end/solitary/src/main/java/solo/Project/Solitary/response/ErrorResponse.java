@@ -3,6 +3,7 @@ package solo.Project.Solitary.response;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindingResult;
 import solo.Project.Solitary.exception.ExceptionCode;
 
@@ -46,5 +47,9 @@ public class ErrorResponse {
 
     public static ErrorResponse of(HttpStatus httpStatus, String message) {
         return new ErrorResponse(httpStatus.value(), message);
+    }
+
+    public static ErrorResponse of(BadCredentialsException e) {
+        return new ErrorResponse(406 ,e.getMessage());
     }
 }

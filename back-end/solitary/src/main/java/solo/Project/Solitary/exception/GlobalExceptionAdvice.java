@@ -3,6 +3,7 @@ package solo.Project.Solitary.exception;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -47,5 +48,13 @@ public class GlobalExceptionAdvice {
         log.error("# handle Exception", e);
 
         return ErrorResponse.of(e.getExceptionCode());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public ErrorResponse handleBadCredentialsException(BadCredentialsException e) {
+        log.error("# handle Exception", e);
+
+        return ErrorResponse.of(e);
     }
 }
