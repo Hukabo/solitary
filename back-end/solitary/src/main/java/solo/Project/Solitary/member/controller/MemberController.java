@@ -2,8 +2,10 @@ package solo.Project.Solitary.member.controller;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.header.Header;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import solo.Project.Solitary.member.dto.MemberDto;
@@ -17,8 +19,8 @@ import static solo.Project.Solitary.member.dto.MemberDto.*;
 @RequestMapping("/member")
 @Validated
 public class MemberController {
-    private MemberService memberService;
-    private MemberMapper mapper;
+    private final MemberService memberService;
+    private final MemberMapper mapper;
 
     public MemberController(MemberService memberService, MemberMapper mapper) {
         this.memberService = memberService;
@@ -27,10 +29,25 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<?> postMember(@Valid @RequestBody MemberPostDto requestBody) {
-        Member member = mapper.memberPostDtoToMember(requestBody);
-        memberService.createMember(member);
 
-        return new ResponseEntity<>(mapper.memberToResponseDto(member), HttpStatus.CREATED);
+        Member member = memberService.createMember(mapper.memberPostDtoToMember(requestBody));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + member.getToken()); // 추후에 제거 이유는 로그인 절차에서는 유효한 회원인지만 검증하고 성공 후 로그인 할 때 토큰 지급
+
+        return ResponseEntity.ok().headers(headers).body(mapper.memberToResponseDto(member));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody MemberLoginDto memberLoginDto) {
+        Member member = mapper.memberLoginDtoToMember(memberLoginDto);
+
+        String token = memberService.joinMember(member);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+
+        return ResponseEntity.ok().headers(headers).body("로그인 되었습니다.");
     }
 
     @GetMapping("/{member-id}")

@@ -1,26 +1,55 @@
 package solo.Project.Solitary.member.sevice;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import solo.Project.Solitary.config.JwtService;
 import solo.Project.Solitary.member.dto.MemberDto;
 import solo.Project.Solitary.member.entity.Member;
 import solo.Project.Solitary.exception.BusinessLogicException;
 import solo.Project.Solitary.exception.ExceptionCode;
 import solo.Project.Solitary.member.repository.MemberRepository;
 
+import java.util.HashMap;
 import java.util.Optional;
+
+import static solo.Project.Solitary.member.dto.MemberDto.*;
 
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.memberRepository = memberRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
     }
 
     public Member createMember(Member member) {
         verifyExistMember(member.getEmail());
 
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        String token = jwtService.generateToken(member);
+        member.setToken(token);
+
         return memberRepository.save(member);
+    }
+
+    public String joinMember(Member member) {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(member.getEmail(), member.getPassword()));
+
+        Member findMember = memberRepository.findByEmail(authenticate.getName()).orElseThrow();
+
+        String token = jwtService.generateToken(findMember);
+
+        return token;
     }
 
     public Member updateMember(Member member) {
