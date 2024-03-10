@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Solitary's Recipe 회원가입</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial=1.0">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+        <h1 id="title">Welcome To Recipe World!!</h1>
+        <p id="description">새로운 요리사가 합류합니다!! 여러분들만의 꿀같은 레시피를 공유해주세요!</p>
+        <hr>
+        <form action="/member" method="post">
+          <fieldset>
+            <label for="name">Your name : <input id="name" type="text" placeholder=" name" required></label>
+            <label for="email">Your email : <input id="email" type="email" placeholder=" email" required></label>
+            <label for="password">Your password : <input id="password" type="password" placeholder=" password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$" required></label>
+            <label for="age">Your age : <input id="age" type="number" pattern="[0-9]" min="13" max="120" placeholder=" age"></label>
+          </fieldset>
+          <fieldset>
+              <label for="male">male <input id="male" class="inline" type="radio" name="gender" value="male" checked></label>
+              <label for="female">female <input id="female" class="inline" type="radio" name="gender" value="female"></label>
+          </fieldset>
+          <label for="terms"><input id="terms" class="inline" type="checkbox" value="terms" required>음식을 가지고 장난을 치지 않을 것을 동의합니다.</label>
+          <input type="submit" value="Submit">
+          <p><a href="index.html">홈으로</a></p>
+        </form>
+    </main>
+  </body>
+</html>
