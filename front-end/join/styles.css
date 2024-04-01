@@ -84,5 +84,5 @@ a:active {
 }
 
 a:hover {
-    text-deco
+    text-decoration: underline;
 }
