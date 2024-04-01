@@ -33,7 +33,7 @@ public class MemberController {
         Member member = memberService.createMember(mapper.memberPostDtoToMember(requestBody));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + member.getToken()); // 추후에 제거 이유는 로그인 절차에서는 유효한 회원인지만 검증하고 성공 후 로그인 할 때 토큰 지급
+        headers.add("Authorization", "Bearer " + member.getToken()); // 추후에 제거. 이유는 로그인 절차에서는 유효한 회원인지만 검증하고 성공 후 로그인 할 때 토큰 지급
 
         return ResponseEntity.ok().headers(headers).body(mapper.memberToResponseDto(member));
     }
