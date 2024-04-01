@@ -249,6 +249,11 @@ button {
     width: 170px;
     height: 40px;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: hsla(33, 50%, 50%, .5);
 }
 
 .button--cta {
@@ -261,6 +266,7 @@ button {
     background-color: transparent;
     border: 2px solid var(--txt-grey);
 }
+
 
 .footer {
     background-color: rgb(21, 12, 12);
