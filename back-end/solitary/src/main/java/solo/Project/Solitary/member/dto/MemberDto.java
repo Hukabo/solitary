@@ -56,4 +56,11 @@ public class MemberDto {
         private String email;
         private String memberName;
     }
+
+    @Builder
+    @Data
+    public static class LoginMemberResponseDto {
+        private Long memberId;
+        private String memberName;
+    }
 }

@@ -42,14 +42,16 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public String joinMember(Member member) {
+    public Member joinMember(Member member) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(member.getEmail(), member.getPassword()));
 
         Member findMember = memberRepository.findByEmail(authenticate.getName()).orElseThrow();
 
         String token = jwtService.generateToken(findMember);
 
-        return token;
+        findMember.setToken(token);
+
+        return findMember;
     }
 
     public Member updateMember(Member member) {

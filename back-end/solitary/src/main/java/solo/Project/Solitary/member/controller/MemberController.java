@@ -42,12 +42,13 @@ public class MemberController {
     public ResponseEntity<?> login(@RequestBody MemberLoginDto memberLoginDto) {
         Member member = mapper.memberLoginDtoToMember(memberLoginDto);
 
-        String token = memberService.joinMember(member);
+        Member loginMember = memberService.joinMember(member);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + token);
+        headers.add("Authorization", "Bearer " + loginMember.getToken());
 
-        return ResponseEntity.ok().headers(headers).body("로그인 되었습니다.");
+        LoginMemberResponseDto response = mapper.memberToLoginMemberResponseDto(loginMember);
+        return ResponseEntity.ok().headers(headers).body(response);
     }
 
     @GetMapping("/{member-id}")

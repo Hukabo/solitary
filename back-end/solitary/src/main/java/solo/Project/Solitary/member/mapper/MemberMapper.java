@@ -56,4 +56,15 @@ public interface MemberMapper {
                 .memberName(member.getMemberName())
                 .build();
     }
+
+    default LoginMemberResponseDto memberToLoginMemberResponseDto(Member member) {
+        if (member == null) {
+            return null;
+        }
+
+        return LoginMemberResponseDto.builder()
+                .memberId(member.getMemberId())
+                .memberName(member.getMemberName())
+                .build();
+    }
 }
