@@ -32,7 +32,8 @@ public class Recipe {
     @Column
     private String imageName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
 
