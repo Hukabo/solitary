@@ -14,9 +14,6 @@ import solo.Project.Solitary.recipe.service.RecipeService;
 import solo.Project.Solitary.response.PageResponse;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import static solo.Project.Solitary.recipe.dto.RecipeDto.*;
@@ -42,7 +39,15 @@ public class RecipeController {
         Recipe recipe = mapper.recipePostDtoToRecipe(title, description, category, image.getOriginalFilename());
         recipeService.createRecipe(recipe, memberId);
 
-        RecipeResponseDto response = mapper.RecipeToRecipeResponseDto(recipe);
+        RecipeResponseDto response = mapper.recipeToRecipeResponseDto(recipe);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{recipeId}")
+    public ResponseEntity<?> getRecipe(@PathVariable long recipeId) {
+        Recipe recipe = recipeService.findRecipe(recipeId);
+        RecipeResponseDto response = mapper.recipeToRecipeResponseDto(recipe);
 
         return ResponseEntity.ok().body(response);
     }

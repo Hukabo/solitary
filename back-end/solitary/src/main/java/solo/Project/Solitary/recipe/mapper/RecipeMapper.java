@@ -39,7 +39,7 @@ public interface RecipeMapper {
         return recipe;
     }
 
-    default RecipeResponseDto RecipeToRecipeResponseDto(Recipe recipe) {
+    default RecipeResponseDto recipeToRecipeResponseDto(Recipe recipe) {
 
         if (recipe == null) {
             return null;
@@ -51,6 +51,8 @@ public interface RecipeMapper {
                 .description(recipe.getDescription())
                 .category(recipe.getCategory().getCategory())
                 .imageName(recipe.getImageName())
+                .memberName(recipe.getMember().getMemberName())
+                .createdAt(recipe.getCreatedAt())
                 .build();
     }
 }

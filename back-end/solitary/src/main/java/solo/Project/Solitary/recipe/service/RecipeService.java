@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import solo.Project.Solitary.exception.BusinessLogicException;
+import solo.Project.Solitary.exception.ExceptionCode;
 import solo.Project.Solitary.member.entity.Member;
 import solo.Project.Solitary.member.repository.MemberRepository;
 import solo.Project.Solitary.recipe.RecipeRepository.RecipeRepository;
@@ -35,9 +37,9 @@ public class RecipeService {
         return null;
     }
 
-    public Recipe findRecipes(Pageable pageable) {
+    public Recipe findRecipe(long recipeId) {
 
-        return null;
+        return findVerifiedRecipe(recipeId);
     }
 
     public List<Recipe> findAllRecipes() {
@@ -61,5 +63,11 @@ public class RecipeService {
     public void deleteRecipe(Long recipeId) {
 
         recipeRepository.deleteById(recipeId);
+    }
+
+    private Recipe findVerifiedRecipe(long recipeId) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
+
+        return optionalRecipe.orElseThrow(() -> new BusinessLogicException(ExceptionCode.RECIPE_NOT_FOUND));
     }
 }

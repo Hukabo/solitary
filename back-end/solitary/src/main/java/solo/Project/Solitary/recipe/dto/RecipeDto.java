@@ -3,6 +3,9 @@ package solo.Project.Solitary.recipe.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 public class RecipeDto {
     @Data
@@ -29,6 +32,8 @@ public class RecipeDto {
         private String title;
         private String description;
         private String imageName;
+        private String memberName;
         private String category;
+        private LocalDateTime createdAt;
     }
 }
