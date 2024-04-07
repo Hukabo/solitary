@@ -9,7 +9,9 @@ document.getElementById('login-container').addEventListener('submit', (event) =>
         email: email.value,
         password: password.value,
     }
+
     console.table(requestData);
+
     fetch('http://localhost:8080/member/login', {
         method: 'POST',
         headers: {
@@ -22,15 +24,24 @@ document.getElementById('login-container').addEventListener('submit', (event) =>
             throw new Error('서버 오류');
         }
         const token = response.headers.get('Authorization');
-        console.log(token);
-        localStorage.setItem('token', token);
 
-        return response.text();
+        localStorage.setItem('token', token);
+        
+        return response.json();
     })
     .then(data => {
-        alert(data);        
+        alert(`${data.memberName}님 환영합니다.`);
 
+        const uesr = {
+            memberId: data.memberId,
+            memberName: data.memberName,
+            token: localStorage.getItem('token'),
+        }
+
+        localStorage.setItem('user', JSON.stringify(uesr));
+        console.table(data);
         // 로그인 된 회원 페이지로 이동
+        window.location.href="../home/home.html";
     })
     .catch(error => {
         console.log("로그인 실패 ", error);

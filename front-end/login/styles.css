@@ -1,5 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    background: url('https://images.pexels.com/photos/2969709/pexels-photo-2969709.jpeg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
