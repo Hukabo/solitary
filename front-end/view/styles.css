@@ -1,0 +1,118 @@
+:root {
+    --bg-dark: hsla(15, 100%, 75%, 1);
+    --txt-dark: hsla(330,40.2%, 45.9%, 1);
+    --txt-dark-2: hsla(330, 40.2%,45.9%, 1);
+    --cta: hsla(33, 50%, 50%, 1);
+    --txt-light: hsla(330, 93.3%, 100%, 1);
+    --txt-grey: hsla(0, 0%, 94.1%, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 8vh;
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-block: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+hr {
+    margin-bottom: 10px;
+    width: 90%;
+    margin-inline: auto;
+}
+
+li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background: url('https://st4.depositphotos.com/6975596/26775/i/1600/depositphotos_267752746-stock-photo-healthy-vegan-food-background-with.jpg');
+    height: 100vh;
+    background-size: cover;
+}
+
+main {
+    height: 100%;
+    width: 60vw;
+    margin: auto;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+main h1 {
+    font-family: cursive;
+    /* color: var(--txt-dark); */
+    text-align: center;
+}
+
+main p {
+    text-align: end;
+    padding-right: 20px;
+    margin-right: 1rem;
+}
+
+article {
+    border: 1px solid black;
+    width: 40vw;
+    height: fit-content;
+    margin-inline: auto;
+    letter-spacing: 1px;
+    margin-block: 20px;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+.left_header {
+    margin-left: 30px;
+}
+
+.left_header .header_logo a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    font-family: cursive;
+}
+
+.right_header {
+    margin-right: 30px;
+    color: var(--txt-grey);
+}
+
+.right_header nav ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.recipe_image {
+    width: 30vw;
+    height: 40vh;
+    border-radius: 5px;
+}
+
+.image_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
