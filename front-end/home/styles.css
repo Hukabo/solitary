@@ -58,7 +58,7 @@ html {
 }
 
 *,
-*::befor,
+*::before,
 *::after {
     box-sizing: inherit;
     margin: 0;
@@ -118,6 +118,7 @@ button {
 .section--1 .header_menu-item {
     font-size: var(--fontSize-2);
     color: var(--txt-grey);
+    cursor: pointer;
 }
 
 .section--1 .hero {
