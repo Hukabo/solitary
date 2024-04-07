@@ -10,6 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 import solo.Project.Solitary.image.service.ImageDataService;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @RestController
@@ -46,7 +48,11 @@ public class ImageController {
 
     @GetMapping("/file/{fileName}")
     public ResponseEntity<?> downloadImageFromFileSystem(@PathVariable String fileName) throws IOException {
-        byte[] image = imageDataService.downloadImageFromFileSystem(fileName);
+
+        String decodedFileName = URLDecoder.decode(fileName, StandardCharsets.UTF_8);
+
+        byte[] image = imageDataService.downloadImageFromFileSystem(decodedFileName);
+
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("image/jpeg"))
                 .body(image);
