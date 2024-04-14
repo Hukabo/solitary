@@ -25,7 +25,7 @@ const attatchWriteListToHeader = () => {
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {
-        window.location.href = '../write/write.html';
+        window.location.href = './write/write.html';
     });
 
     headerMenu.appendChild(li);
@@ -39,7 +39,7 @@ const attatchRecipesListToHeader = () => {
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {
-        window.location.href = '../user/user.html';
+        window.location.href = './user/user.html';
     });
 
     headerMenu.appendChild(li);
@@ -59,17 +59,17 @@ window.onload = () => {
         signInBtn.textContent = "Go To Write";
         document.querySelector('.cta_textBox p:nth-of-type(2)').textContent = "Have a good recipe";
         signInBtn.addEventListener('click', () => {
-            window.location.href = "../write/write.html";
+            window.location.href = "./write/write.html";
         });
 
     } else {
 
         signUpBtn.addEventListener('click', () => {
-            window.location.href = "../join/join.html";
+            window.location.href = "./join/join.html";
         });
         
         signInBtn.addEventListener('click', () => {
-            window.location.href = "../login/login.html";
+            window.location.href = "./login/login.html";
         });
     }
 };

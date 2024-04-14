@@ -12,10 +12,10 @@ const pageData = {
 window.onload = () => {
     memberNameOnHeader.textContent = `${memberName}님 환영합니다!`;
 
-    // 추가로 페이지가 로드 될 때, 회원들이 작성한 레시피를 렌딩
 
     fetch('http://localhost:8080/recipe/recipes/page/0/10')
     .then(response => {
+        console.log(response.status);
         if (!response.ok) {
             throw new Error("server error");
         }
@@ -32,10 +32,12 @@ window.onload = () => {
             const author = data.response.content[i].member.memberName;
 
             const li = document.createElement('li');
+
             li.addEventListener('click', () => {
                 localStorage.setItem('recipeId', recipeId);
                 window.location.href = "../view/view.html";
             });
+
             li.innerHTML = `id:${recipeId}<span>제목: <a href="#">${title}</a></span><span>작성자: ${author}</span>`
             
             articleContainer.appendChild(li);
