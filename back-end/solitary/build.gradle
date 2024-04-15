@@ -2,11 +2,12 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'war'
 }
 
 group = 'solo'
 version = '0.0.1-SNAPSHOT'
-
+apply plugin:'war'
 java {
 	sourceCompatibility = '17'
 }
@@ -21,7 +22,11 @@ repositories {
 	mavenCentral()
 }
 
+bootWar.enabled = false // Spring Boot Gradle 플러그인이 자동으로 생성하는 bootWar 태스크를 비활성화
+war.enabled = true // WAR 플러그인을 활성화하여 WAR 파일을 생성
+
 dependencies {
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' // WAR 파일을 생성할 때 해당 WAR 파일이 실행될 때 외부 톰캣 컨테이너를 가정하고 있다는 것을 의미
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
