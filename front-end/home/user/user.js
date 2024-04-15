@@ -15,14 +15,14 @@ window.onload = () => {
 
     fetch('http://localhost:8080/recipe/recipes/page/0/10')
     .then(response => {
-        console.log(response.status);
+
         if (!response.ok) {
             throw new Error("server error");
         }
         return response.json();
     })
     .then(data => {
-        
+        console.log(data);
         let num = data.response.numberOfElements;
         const totalPages = data.response.totalPages;
 

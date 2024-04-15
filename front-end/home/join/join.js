@@ -32,7 +32,7 @@ document.getElementById("signupForm").addEventListener('submit', (event) => {
             return;
         }
         alert(`회원가입 완료!`);
-        window.location.href="../home/home.html"
+        window.location.href="../home.html"
     })
     .catch(error => {
         console.log("회원가입 실패: ", error);

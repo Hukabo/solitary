@@ -41,7 +41,7 @@ document.getElementById('login-container').addEventListener('submit', (event) =>
         localStorage.setItem('user', JSON.stringify(uesr));
         console.table(data);
         // 로그인 된 회원 페이지로 이동
-        window.location.href="../home/home.html";
+        window.location.href="../home.html";
     })
     .catch(error => {
         console.log("로그인 실패 ", error);
