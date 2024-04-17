@@ -21,7 +21,7 @@ public class ImageDataService {
 
     private final ImageRepository imageRepository;
     private final FileDataRepository fileDataRepository;
-    private final String FOLDER_PATH = "/Users/jw/Desktop/myProject/solitary/back-end/solitary/src/main/resources/static/images/";
+    private final String FOLDER_PATH = "/Users/jw/Desktop/myProject/solitary/back/solitary/src/main/resources/static/images/";
 
     public String uploadImage(MultipartFile file) throws IOException {
 
