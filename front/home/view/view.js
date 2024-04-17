@@ -5,6 +5,7 @@ const createdAt = document.querySelector('.created_at');
 const author = document.querySelector('.author');
 const description = document.getElementById('description');
 const imageContainer = document.querySelector('.image_container');
+const token = JSON.parse(localStorage.getItem('user')).token;
 
 
 
@@ -27,6 +28,7 @@ window.onload = () => {
         description.textContent = data.description;
         
         const imageName = data.imageName;
+        console.log(imageName);
 
         loadImage(imageName);
     })
@@ -36,7 +38,12 @@ window.onload = () => {
 }
 
 function loadImage(imageName) {
-    fetch(`http://localhost:8080/image/file/${imageName}`)
+    fetch(`http://localhost:8080/image/file/${imageName}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': token,
+        }
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error("image loading fail.")
