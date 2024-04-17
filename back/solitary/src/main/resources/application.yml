@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/solitary
+    url: jdbc:postgresql://solitary.cbeueuqs0ksx.ap-northeast-2.rds.amazonaws.com/solitary
     driverClassName: org.postgresql.Driver
-    username: hukabo
-    password: hukabo
+    username: hukabo95
+    password: hukabo95
   h2:
     console:
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
