@@ -56,7 +56,7 @@ public class SecurityConfiguration {
                         authorize -> authorize
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/member/**").permitAll()
-                                .requestMatchers("/recipe/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)) // h2 접속을 위해 FrameOptionsConfig를 disable.
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
