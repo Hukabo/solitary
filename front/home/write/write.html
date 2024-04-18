@@ -12,18 +12,23 @@
     </header>
     <main>
         <form id="postForm" enctype="multipart/form-data">
-            <input type="text" id="postTitle" placeholder="제목">
-            <label for="foodType">카테고리 : <select id="foodType" name="foodType">
-                <option value="korean">한식</option>
-                <option value="western">양식</option>
-                <option value="chinese">중식</option>
-                <option value="japanese">일식</option>
-                <option value="other">기타</option>
-            </select></label>
-            <textarea id="postContent" placeholder="내용"></textarea>
-            <input type="file" id="postImage" accept="image/jpeg">
+            <input type="text" id="postTitle" placeholder="레시피 제목">
+            <div id="category">
+                <label for="foodType">카테고리 : <select id="foodType" name="foodType">
+                    <option value="korean">한식</option>
+                    <option value="western">양식</option>
+                    <option value="chinese">중식</option>
+                    <option value="japanese">일식</option>
+                    <option value="other">기타</option>
+                </select></label>
+            </div>
+            <textarea id="postContent" placeholder="레시피를 작성해주세요."></textarea>
+            <div id="imgLabel">
+                <label for="postImage">사진 올리기</label>
+            </div>
             <div id="image_container"></div>
             <button type="submit">게시</button>
+            <input type="file" id="postImage" accept="image/jpeg">
         </form>
     </main>
     <script src="write.js"></script>

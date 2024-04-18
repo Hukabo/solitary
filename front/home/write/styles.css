@@ -58,3 +58,32 @@ button:hover {
 #postContent {
     height: 50vh;
 }
+
+#category {
+    margin-block: 10px;
+}
+
+#postImage {
+    opacity: 0;
+}
+
+#imgLabel {
+    border-radius: 7px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+    background-color: var(--bg-dark);
+}
+
+#imgLabel label {
+    color: var(--txt-grey);
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background-color: var(--bg-dark);
+    border-radius: 7px;
+    width: 80px;
+}
