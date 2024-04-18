@@ -61,7 +61,7 @@ main {
 }
 
 main h1 {
-    font-family: cursive;
+    padding-block: 1rem;
     /* color: var(--txt-dark); */
     text-align: center;
 }
