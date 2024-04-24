@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import solo.Project.Solitary.comment.entity.Comment;
 import solo.Project.Solitary.member.entity.Member;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -36,6 +39,9 @@ public class Recipe {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToMany(mappedBy = "recipe")
+    private List<Comment> comments = new ArrayList<>();
+
 
     @CreationTimestamp
     @Column(nullable = false, length = 20, updatable = false)
@@ -59,5 +65,10 @@ public class Recipe {
         public String getCategory() {
             return this.category;
         }
+    }
+
+    public void setComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setRecipe(this);
     }
 }
