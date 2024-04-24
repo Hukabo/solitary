@@ -8,10 +8,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import solo.Project.Solitary.comment.entity.Comment;
 import solo.Project.Solitary.member.role.Role;
 import solo.Project.Solitary.recipe.entity.Recipe;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +37,13 @@ public class Member implements UserDetails {
 
     @Column(nullable = false)
     private String memberName;
+
+    @OneToMany(mappedBy = "member")
+    @JsonIgnore
+    List<Recipe> recipes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    List<Comment> comments = new ArrayList<>();
 
     @Column
     @Enumerated(value = EnumType.STRING)
