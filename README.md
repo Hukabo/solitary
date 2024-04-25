@@ -2,9 +2,8 @@
 
 <br />
 
-> ## Project Status : 진행중...
 
-배포링크 : <http://hukabo.click/> (작성 페이지에서 이미지 파일은 현재 jpeg만 등록 가능합니다...!)
+배포링크 : <http://hukabo.click>
 
 ---
 
