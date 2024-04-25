@@ -21,6 +21,7 @@ document.getElementById('login-container').addEventListener('submit', (event) =>
     })
     .then(response => {
         if (!response.ok) {
+            alert("아이디와 비밀번호를 확인해주세요.");
             throw new Error('서버 오류');
         }
         const token = response.headers.get('Authorization');

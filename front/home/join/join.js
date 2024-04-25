@@ -31,7 +31,7 @@ document.getElementById("signupForm").addEventListener('submit', (event) => {
             alert("이미 존재하는 회원입니다.");
             return;
         }
-        alert(`회원가입 완료!`);
+        alert(`회원가입 완료! 로그인 해주세요!`);
         window.location.href="../home.html"
     })
     .catch(error => {

@@ -29,6 +29,8 @@ h1 {
 
 main {
     padding: 20px;
+    width: 60vw;
+    margin: auto;
 }
 
 form {
@@ -67,17 +69,28 @@ button:hover {
     opacity: 0;
 }
 
-#imgLabel {
+#submit-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#divide {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#img-btn {
     border-radius: 7px;
     width: 80px;
-    height: 30px;
+    height: 37px;
+    font-size: 14px;
     text-align: center;
-    line-height: 2rem;
-    margin-bottom: 1rem;
+    line-height: 2.3rem;
     background-color: var(--bg-dark);
 }
 
-#imgLabel label {
+#submit-container label {
     color: var(--txt-grey);
     cursor: pointer;
 }

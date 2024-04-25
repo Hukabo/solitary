@@ -1,7 +1,7 @@
 :root {
     --bg-dark: hsla(15, 100%, 75%, 1);
     --txt-dark: hsla(330,40.2%, 45.9%, 1);
-    --txt-dark-2: hsla(330, 40.2%,45.9%, 1);
+    --txt-dark-2: hsla(330, 40.2%,45.9%, .8);
     --cta: hsla(33, 50%, 50%, 1);
     --txt-light: hsla(330, 93.3%, 100%, 1);
     --txt-grey: hsla(0, 0%, 94.1%, 1);
@@ -56,7 +56,7 @@ main {
 
 main h1 {
     font-family: cursive;
-    color: var(--txt-dark);
+    color: var(--txt-dark-2);
     text-align: center;
 }
 
@@ -74,10 +74,11 @@ main .article_list {
     border: 1px solid var(--bg-dark);
     border-radius: 10px;
     padding-inline: 10px;
+    cursor: pointer;
 }
 
 .article_list li:hover {
-    background-color: var(--bg-dark);
+    background-color: var(--txt-grey);
 }
 
 .left_header {

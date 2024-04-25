@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판</title>
+    <title>Solitary's Recipe</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +12,6 @@
     </header>
     <main>
         <form id="postForm" enctype="multipart/form-data">
-            <input type="text" id="postTitle" placeholder="레시피 제목">
             <div id="category">
                 <label for="foodType">카테고리 : <select id="foodType" name="foodType">
                     <option value="korean">한식</option>
@@ -22,12 +21,15 @@
                     <option value="other">기타</option>
                 </select></label>
             </div>
+            <input type="text" id="postTitle" placeholder="레시피 제목">
             <textarea id="postContent" placeholder="레시피를 작성해주세요."></textarea>
-            <div id="imgLabel">
-                <label for="postImage">사진 올리기</label>
+            <div id="submit-container">
+                <div id="image_container"></div>
+                <div id="divide">
+                    <div id="img-btn"><label for="postImage">이미지</label></div>
+                    <button type="submit">게시</button>
+                </div>
             </div>
-            <div id="image_container"></div>
-            <button type="submit">게시</button>
             <input type="file" id="postImage" accept="image/jpeg">
         </form>
     </main>

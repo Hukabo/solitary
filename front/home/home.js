@@ -11,7 +11,14 @@ const attatchNameListToHeader = (memberName) => {
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {
-        alert("회원 정보 페이지 구현");
+        const logout = confirm("로그아웃 하시겠습니까?");
+        console.log(logout);
+
+        if(logout) {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            location.reload();
+        }
     });
 
     headerMenu.appendChild(li);
@@ -21,7 +28,7 @@ const attatchWriteListToHeader = () => {
 
     const li = document.createElement('li');
 
-    li.textContent = "글쓰러가기";
+    li.textContent = "작성하기";
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {
@@ -35,7 +42,7 @@ const attatchRecipesListToHeader = () => {
 
     const li = document.createElement('li');
 
-    li.textContent = "글목록 보기";
+    li.textContent = "레시피 조회";
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {

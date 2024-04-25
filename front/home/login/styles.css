@@ -1,9 +1,17 @@
+:root {
+    --bg-dark: hsla(15, 100%, 75%, 1);
+    --txt-dark: hsla(330,40.2%, 45.9%, 1);
+    --txt-dark-2: hsla(330, 40.2%,45.9%, .8);
+    --cta: hsla(33, 50%, 50%, 1);
+    --txt-light: hsla(330, 93.3%, 100%, 1);
+    --txt-grey: hsla(0, 0%, 94.1%, 1);
+}
+
 body {
     background: url('https://images.pexels.com/photos/2969709/pexels-photo-2969709.jpeg');
     background-size: cover;
     background-position: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,6 +19,18 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+h2 {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--bg-dark);
+}
+
+h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 #login-container {
     background-color: #fff;
     border-radius: 5px;

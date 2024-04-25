@@ -2,7 +2,7 @@
     --bg-dark: hsla(15, 100%, 75%, 1);
     --txt-dark: hsla(330,40.2%, 45.9%, 1);
     --txt-dark-2: hsla(330, 40.2%,45.9%, 1);
-    --cta: hsla(33, 50%, 50%, 1);
+    --cta: hsla(33, 50%, 50%, .6);
     --txt-light: hsla(330, 93.3%, 100%, 1);
     --txt-grey: hsla(0, 0%, 94.1%, 1);
 }
@@ -17,7 +17,7 @@
 
 html {
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 100%;
 }
 
 header {
@@ -34,7 +34,7 @@ header {
 }
 
 hr {
-    margin-bottom: 10px;
+    margin-block: 10px;
     width: 90%;
     margin-inline: auto;
 }
@@ -48,11 +48,12 @@ body {
     background: url('https://st4.depositphotos.com/6975596/26775/i/1600/depositphotos_267752746-stock-photo-healthy-vegan-food-background-with.jpg');
     height: 100vh;
     background-size: cover;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 main {
-    height: 100%;
     width: 60vw;
+    min-height: 100vh;
     margin: auto;
     background-color: antiquewhite;
     display: flex;
@@ -62,7 +63,6 @@ main {
 
 main h1 {
     padding-block: 1rem;
-    /* color: var(--txt-dark); */
     text-align: center;
 }
 
@@ -70,17 +70,6 @@ main p {
     text-align: end;
     padding-right: 20px;
     margin-right: 1rem;
-}
-
-article {
-    border: 1px solid black;
-    width: 40vw;
-    height: fit-content;
-    margin-inline: auto;
-    letter-spacing: 1px;
-    margin-block: 20px;
-    line-height: 1.5;
-    padding: 20px;
 }
 
 .left_header {
@@ -115,4 +104,80 @@ article {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+.image_container img {
+    width: 175px;
+    height: 175px;
+}
+
+.body {
+    border-radius: 5px;
+    border: 1px solid hsla(0, 0%, 0%, .3);
+    width: 40vw;
+    margin: auto;
+    margin-top: 0;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
+    margin-block: 20px;
+    width: 40vw;
+    height: 10vh;
+    border: 1px solid hsla(0, 0%, 0%, .3);
+    border-radius: 10px;
+    gap: 8px;
+}
+
+.comment-form #comment-input {
+    width: 30vw;
+    height: 5vh;
+    margin-left: 10px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.comment-form button {
+    width: 70px;
+    height: 40px;
+    background-color: var(--txt-grey);
+    border-radius: 5px;
+}
+
+.comments-container {
+    width: 70vh;
+    margin-inline: auto;
+    margin-block: 10px 20px;
+}
+
+.comments-container div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    border-top: 1px solid var(--bg-dark);
+    margin-block: 10px;
+    padding-block: 20px 10px;
+    font-weight: 200;
+}
+
+.comments-container div span {
+    margin-left: 25px;
+}
+
+#title {
+    font-weight: 400;
+}
+
+#description {
+    height: fit-content;
+    margin-inline: auto;
+    letter-spacing: 0.5px;
+    margin-block: 20px;
+    line-height: 1.5;
+    padding: 20px;
+    min-height: 40vh;
+    font-weight: 200;
 }
