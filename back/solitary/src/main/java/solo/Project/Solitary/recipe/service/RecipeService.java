@@ -65,7 +65,7 @@ public class RecipeService {
         recipeRepository.deleteById(recipeId);
     }
 
-    private Recipe findVerifiedRecipe(long recipeId) {
+    public Recipe findVerifiedRecipe(long recipeId) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
 
         return optionalRecipe.orElseThrow(() -> new BusinessLogicException(ExceptionCode.RECIPE_NOT_FOUND));
