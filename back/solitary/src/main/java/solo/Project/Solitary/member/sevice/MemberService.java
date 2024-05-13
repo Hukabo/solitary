@@ -1,4 +1,4 @@
-package solo.Project.Solitary.member.service;
+package solo.Project.Solitary.member.sevice;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
