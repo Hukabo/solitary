@@ -4,10 +4,13 @@ const passwordInput = document.getElementById('password');
 const memberNameInput = document.getElementById('memberName');
 const updateMemberForm = document.querySelector('.input-container');
 const logout = document.getElementById('logout');
+const recipes = document.getElementById('recipes');
+
 
 window.onload = () => {
 
     loadMember(memberId);
+    getRecipes(memberId);
 }
 
 function loadMember(memberId) {
@@ -68,4 +71,47 @@ updateMemberForm.addEventListener('submit',(event) => {
     updateMember();
 });
 
-function getRecipes()
+function getRecipes(memberId) {
+
+    fetch(`http://localhost:8080/member/recipe/${memberId}`)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error("error")
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        const count = data.recordCount;
+
+        for(let i=0; i<count; i++) {
+            const recipe = data.response[i];
+
+            const tr = document.createElement('tr');
+            tr.addEventListener('click', () => {
+                localStorage.setItem('recipeId', recipe.recipeId);
+                window.location.href = "../view/view.html";
+            });
+
+            tr.innerHTML += `
+                <td>${recipe.recipeId}</td>
+                <td>${recipe.title}</td>
+                <td>${recipe.createdAt}</td>`;
+            
+            recipes.appendChild(tr);
+        };
+    })
+    .catch(error => {
+        console.error('error : ', error);
+    })
+}
+
+logout.addEventListener('click', () => {
+    const logout = confirm("로그아웃 하시겠습니까?");
+
+        if(logout) {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.href = "../home.html";
+        }
+});

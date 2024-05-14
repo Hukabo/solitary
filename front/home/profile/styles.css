@@ -127,7 +127,11 @@ td, th {
     text-align: center;
 }
 
-tr:nth-child(1) {
+thead tr {
     color: var(--txt-grey);
     background-color: var(--bg-dark);
+}
+
+tbody tr {
+    cursor: pointer;
 }

@@ -11,14 +11,7 @@ const attatchNameListToHeader = (memberName) => {
     li.classList.add('header_menu-item');
 
     li.addEventListener('click', () => {
-        const logout = confirm("로그아웃 하시겠습니까?");
-        console.log(logout);
-
-        if(logout) {
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            location.reload();
-        }
+        window.location.href = "./profile/profile.html";
     });
 
     headerMenu.appendChild(li);

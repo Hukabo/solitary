@@ -13,9 +13,9 @@
         
         <form id="signupForm">
           <fieldset>
-            <label for="name">Your name : <input id="name" type="text" name="memberName" placeholder=" name" required></label>
+            <label for="name">Your name : <input id="name" type="text" name="memberName" pattern="[가-힣]+" title="한글만 입력가능합니다." placeholder=" name" required></label>
             <label for="email">Your email : <input id="email" type="email" name="email" placeholder=" email" required></label>
-            <label for="password">Your password : <input id="password" type="password" name="password" placeholder=" password" required></label>
+            <label for="password">Your password : <input id="password" type="password" name="password" pattern="(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?!.*\s).{8,}" title="올바른 형식의 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 혼합 8글자 이상)" placeholder=" password" required></label>
           </fieldset>
           <div class="submit-container">
             <input type="submit" value="회원가입">
