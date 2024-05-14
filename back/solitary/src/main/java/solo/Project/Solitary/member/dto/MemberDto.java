@@ -72,4 +72,12 @@ public class MemberDto {
         private Long memberId;
         private String memberName;
     }
+
+    @Builder
+    @Data
+    public static class MemberRecipeResponseDto {
+        private Long recipeId;
+        private String title;
+        private String createdAt;
+    }
 }

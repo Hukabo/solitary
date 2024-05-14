@@ -12,6 +12,10 @@ import solo.Project.Solitary.member.dto.MemberDto;
 import solo.Project.Solitary.member.entity.Member;
 import solo.Project.Solitary.member.mapper.MemberMapper;
 import solo.Project.Solitary.member.sevice.MemberService;
+import solo.Project.Solitary.recipe.entity.Recipe;
+import solo.Project.Solitary.response.PageResponse;
+
+import java.util.List;
 
 import static solo.Project.Solitary.member.dto.MemberDto.*;
 
@@ -52,10 +56,18 @@ public class MemberController {
     }
 
     @GetMapping("/{member-id}")
-    public ResponseEntity<?> getMember(@PathVariable("member-id") @Positive long memberId) {
+    public ResponseEntity<?> getMember(@PathVariable("member-id") @Positive Long memberId) {
         Member member = memberService.findMember(memberId);
 
         return new ResponseEntity<>(mapper.memberToResponseDto(member), HttpStatus.OK);
+    }
+
+    @GetMapping("/recipe/{member-id}")
+    public ResponseEntity<?> getMembersRecipe(@PathVariable("member-id") Long memberId) {
+        List<Recipe> recipes = memberService.getRecipes(memberId);
+        PageResponse<?> pageResponse = mapper.memberRecipePage(recipes);
+
+        return ResponseEntity.ok(pageResponse);
     }
 
     @PatchMapping

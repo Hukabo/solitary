@@ -12,8 +12,10 @@ import solo.Project.Solitary.member.entity.Member;
 import solo.Project.Solitary.exception.BusinessLogicException;
 import solo.Project.Solitary.exception.ExceptionCode;
 import solo.Project.Solitary.member.repository.MemberRepository;
+import solo.Project.Solitary.recipe.entity.Recipe;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import static solo.Project.Solitary.member.dto.MemberDto.*;
@@ -68,6 +70,11 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
+    public List<Recipe> getRecipes(Long memberId) {
+        Member member = findVerifiedMember(memberId);
+
+        return member.getRecipes();
+    }
     public void deleteMember(long memberId) {
 
         memberRepository.deleteById(memberId);

@@ -27,6 +27,8 @@ public class RecipeService {
 
         Member findMember = memberRepository.findById(memberId).orElseThrow();
 
+        findMember.getRecipes().add(recipe);
+
         recipe.setMember(findMember);
 
         return recipeRepository.save(recipe);
