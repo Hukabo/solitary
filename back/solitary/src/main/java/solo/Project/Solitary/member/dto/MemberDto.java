@@ -2,6 +2,7 @@ package solo.Project.Solitary.member.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +17,12 @@ public class MemberDto {
         private String email;
 
         @NotBlank(message = "이름을 입력해주세요.")
+        @Pattern(regexp = "^[가-힣]+$", message = "이름은 한글만 가능하십니다.")
         private String memberName;
 
         @NotBlank(message = "비밀번호를 입력해주세요.")
+        @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?!.*\\s).{8,}$",
+                message = "영문,숫자,특수문자를 조합하여 8글자를 만들어주세요.")
         private String password;
     }
 
@@ -35,6 +39,8 @@ public class MemberDto {
         private String email;
 
         @NotBlank(message = "비밀번호를 입력해주세요.")
+        @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?!.*\\s).{8,}$",
+                message = "영문,숫자,특수문자를 조합하여 8글자를 만들어주세요.")
         private String password;
     }
 
@@ -43,10 +49,13 @@ public class MemberDto {
         @Positive
         private long memberId;
 
-        @NotBlank(message = "수정하실 이름을 입력해주세요.")
+        @NotBlank(message = "이름을 입력해주세요.")
+        @Pattern(regexp = "^[가-힣]+$", message = "이름은 한글만 가능하십니다.")
         private String memberName;
 
         @NotBlank(message = "수정하실 비밀번호를 입력해주세요.")
+        @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?!.*\\s).{8,}$",
+                message = "영문,숫자,특수문자를 조합하여 8글자를 만들어주세요.")
         private String password;
     }
 

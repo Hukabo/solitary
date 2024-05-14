@@ -6,7 +6,6 @@ import solo.Project.Solitary.recipe.entity.Recipe;
 import static solo.Project.Solitary.recipe.dto.RecipeDto.*;
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
-
     default Recipe recipePostDtoToRecipe(String title,
                                          String description,
                                          String category,

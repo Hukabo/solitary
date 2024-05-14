@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Profile Page</title>
+</head>
+<body>
+    <header>
+        <h2><a href="../home.html">Solitary's Recipe</a></h2>
+        <nav>
+            <ul>
+                <li id="logout"><a href="#">로그아웃</a></li>
+                <li><a href="../write/write.html">레시피 작성</a></li>
+                <li><a href="../user/user.html">레시피 조회</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="user-info">
+            <div class="sub-title">나의 정보 수정</div>
+            <form class="input-container">
+                <label for="email">이메일 : <input id="email" type="email" value="" readonly /></label>
+                <label for="memberName">회원 이름 : <input id="memberName" type="text" name="memberName" value="" pattern="[가-힣]+" title="한글만 입력가능합니다." required /></label>
+                <label for="password">패스워드 : <input id="password" type="password" name="password" value="" pattern="(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?!.*\s).{8,}" title="올바른 형식의 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 혼합 8글자 이상)" required /></label>
+                <input type="submit" value="수정하기" />
+            </form>
+        </div>
+        <div class="recipe-list">
+            <div class="sub-title">내가 쓴 레시피</div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>tiadsfasdftle</td>
+                    <td>2024-21-21</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>tiadsfdtle</td>
+                    <td>2024-21-21</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>tiasdfasdfsdftle</td>
+                    <td>2024-21-21</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>title</td>
+                    <td>2024-21-21</td>
+                </tr>
+                
+            </table>
+        </div>
+    </main>
+    <script src="profile.js"></script>
+</body>
+</html>

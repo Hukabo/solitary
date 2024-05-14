@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://solitary.cbeueuqs0ksx.ap-northeast-2.rds.amazonaws.com/solitary
-#    url: jdbc:postgresql://localhost/solitary
-#    driverClassName: org.postgresql.Driver
-    username: hukabo95
-    password: hukabo95
-#    username: hukabo
-#    password: hukabo
+#    url: jdbc:postgresql://solitary.cbeueuqs0ksx.ap-northeast-2.rds.amazonaws.com/solitary
+    url: jdbc:postgresql://localhost/solitary
+    driverClassName: org.postgresql.Driver
+#    username: hukabo95
+#    password: hukabo95
+    username: hukabo
+    password: hukabo
   h2:
     console:
       enabled: true

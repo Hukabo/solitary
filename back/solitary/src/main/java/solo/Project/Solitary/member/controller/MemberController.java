@@ -59,7 +59,7 @@ public class MemberController {
     }
 
     @PatchMapping
-    public ResponseEntity<?> patchMember(@RequestBody MemberPatchDto memberPatchDto) {
+    public ResponseEntity<?> patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto) {
         Member member = memberService.updateMember(mapper.memberPatchDtoToMember(memberPatchDto));
 
         return new ResponseEntity<>(mapper.memberToResponseDto(member), HttpStatus.OK);
