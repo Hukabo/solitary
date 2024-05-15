@@ -1,6 +1,7 @@
 package solo.Project.Solitary.recipe.controller;
 
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.annotation.MultipartConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,12 +32,17 @@ public class RecipeController {
     public ResponseEntity<?> postRecipe(@RequestParam("title") String title,
                                         @RequestParam("description") String description,
                                         @RequestParam("category") String category,
-                                        @RequestParam("image") MultipartFile image,
+                                        @RequestParam("image") @Nullable MultipartFile image,
                                         @PathVariable("member-id") long memberId) throws IOException {
+        // 이미지 없을 경우 고려하여 로직 짜기
+        String imageName = "";
 
-        imageDataService.uploadImageToFileSystem(image);
+        if(image != null) {
+            imageDataService.uploadImageToFileSystem(image);
+            imageName = image.getOriginalFilename();
+        }
 
-        Recipe recipe = mapper.recipePostDtoToRecipe(title, description, category, image.getOriginalFilename());
+        Recipe recipe = mapper.recipePostDtoToRecipe(title, description, category, imageName);
         recipeService.createRecipe(recipe, memberId);
 
         RecipeResponseDto response = mapper.recipeToRecipeResponseDto(recipe);
@@ -81,5 +87,23 @@ public class RecipeController {
         return new PageResponse<>(page.getSize(), page);
     }
 
+    @PatchMapping("/{recipe-id}")
+    public ResponseEntity<?> patchRecipe(@RequestParam("title") String title,
+                                        @RequestParam("description") String description,
+                                        @RequestParam("category") String category,
+                                        @PathVariable("recipe-id") long recipeId) {
 
+        Recipe recipe = mapper.recipePatchDtoToRecipe(title, description, category);
+        recipeService.updateRecipe(recipe, recipeId);
+
+        return ResponseEntity.ok().body("레시피가 수정되었습니다.");
+    }
+
+    @DeleteMapping("/{recipe-id}")
+    public ResponseEntity<?> deleteRecipe(@PathVariable("recipe-id") Long recipeId) {
+
+        recipeService.deleteRecipe(recipeId);
+
+        return ResponseEntity.ok("레시피가 삭제되었습니다.");
+    }
 }

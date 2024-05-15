@@ -11,11 +11,38 @@ public interface RecipeMapper {
                                          String category,
                                          String imageName) {
 
-
         Recipe recipe = Recipe.builder()
                 .title(title)
                 .description(description)
                 .imageName(imageName)
+                .build();
+
+        switch (category) {
+            case "korean":
+                recipe.setCategory(Recipe.Category.KOREAN);
+                break;
+            case "western":
+                recipe.setCategory(Recipe.Category.WESTERN);
+                break;
+            case "chinese":
+                recipe.setCategory(Recipe.Category.CHINESE);
+                break;
+            case "japanese":
+                recipe.setCategory(Recipe.Category.JAPANESE);
+                break;
+            default:
+                recipe.setCategory(Recipe.Category.OTHER);
+        }
+
+        return recipe;
+    }
+
+    default Recipe recipePatchDtoToRecipe(String title,
+                                                  String description,
+                                                  String category) {
+        Recipe recipe = Recipe.builder()
+                .title(title)
+                .description(description)
                 .build();
 
         switch (category) {

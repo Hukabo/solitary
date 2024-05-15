@@ -34,10 +34,17 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public Recipe updateRecipe(Recipe recipe) {
+    public Recipe updateRecipe(Recipe recipe, long recipeId) {
 
-        return null;
+        Recipe findRecipe = findRecipe(recipeId);
+
+        Optional.ofNullable(recipe.getTitle()).ifPresent(findRecipe::setTitle);
+        Optional.ofNullable(recipe.getDescription()).ifPresent(findRecipe::setDescription);
+        Optional.ofNullable(recipe.getCategory()).ifPresent(findRecipe::setCategory);
+
+        return recipeRepository.save(findRecipe);
     }
+
 
     public Recipe findRecipe(long recipeId) {
 
