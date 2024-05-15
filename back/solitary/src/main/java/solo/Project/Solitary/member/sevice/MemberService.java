@@ -60,7 +60,7 @@ public class MemberService {
         Member findMember = findVerifiedMember(member.getMemberId());
 
         Optional.ofNullable(member.getMemberName()).ifPresent(findMember::setMemberName);
-        Optional.ofNullable(member.getPassword()).ifPresent(findMember::setPassword);
+        Optional.ofNullable(member.getPassword()).ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 
         return memberRepository.save(findMember);
     }
