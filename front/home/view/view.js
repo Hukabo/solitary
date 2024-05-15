@@ -1,4 +1,5 @@
 // 유저 및 레시피 정보
+const memberName = JSON.parse(localStorage.getItem('user')).memberName;
 const recipeId = localStorage.getItem('recipeId');
 const memberId = JSON.parse(localStorage.getItem('user')).memberId;
 const token = JSON.parse(localStorage.getItem('user')).token;
@@ -12,41 +13,24 @@ const imageContainer = document.querySelector('.image_container');
 // 댓글 요소들
 const commentForm = document.querySelector('.comment-form');
 const commentsContainer = document.querySelector('.comments-container');
-
+// request버튼
+const modifyBtn = document.getElementById('btn-modify');
+const deleteBtn = document.getElementById('btn-delete');
 
 window.onload = () => {
-    const memberName = JSON.parse(localStorage.getItem('user')).memberName;
-    memberNameOnHeader.textContent = `${memberName}님`;
+    getRecipe();
+};
 
-    fetch(`http://localhost:8080/recipe/${recipeId}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("recipe loading fail.");
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
+modifyBtn.addEventListener('click', () => {
+    window.location.href = `../edit/edit.html?recipeId=${recipeId}`;
+});
+deleteBtn.addEventListener('click', () => {
+    const isDelete = confirm("삭제하시겠습니까?");
 
-        const yyyymmdd = data.createdAt.substring(0, 10);
-        const hour = data.createdAt.substring(11, 16);
-        const time = yyyymmdd + " " + hour;
-
-        title.textContent = data.title;
-        createdAt.textContent = time;
-        author.textContent = `작성자 : ${data.memberName}`;
-        description.textContent = data.description;
-        
-        const imageName = data.imageName;
-        console.log(imageName);
-
-        loadImage(imageName);
-        loadComments(recipeId);
-    })
-    .catch(error => {
-        console.error("error: ",error);
-    })
-}
+    if(isDelete) {
+        deleteRecipe(recipeId);
+    }
+});
 
 function loadImage(imageName) {
     fetch(`http://localhost:8080/image/file/${imageName}`, {
@@ -134,3 +118,66 @@ commentForm.addEventListener('submit', (event) => {
         console.error("Error : ", error);
     })
 })
+
+function getRecipe() {
+
+    memberNameOnHeader.textContent = `${memberName}님`;
+
+    fetch(`http://localhost:8080/recipe/${recipeId}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("recipe loading fail.");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+
+        const yyyymmdd = data.createdAt.substring(0, 10);
+        const hour = data.createdAt.substring(11, 16);
+        const time = yyyymmdd + " " + hour;
+
+        title.textContent = data.title;
+        createdAt.textContent = time;
+        author.textContent = `작성자 : ${data.memberName}`;
+        description.textContent = data.description;
+        
+        const imageName = data.imageName;
+        console.log(imageName);
+
+        if(data.memberName == memberName) { // 작성자와 로그인한 회원과 같다면
+            document.querySelector('.btn-container').classList.remove('display-none');
+        }
+
+        if(imageName !== '') {
+            loadImage(imageName);
+        }
+        
+        loadComments(recipeId);
+    })
+    .catch(error => {
+        console.error("error: ",error);
+    })
+};
+
+function deleteRecipe(recipeId) {
+
+    fetch(`http://localhost:8080/recipe/${recipeId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('error');
+        }
+
+        return response.text();
+    }) 
+    .then(data => {
+        alert(data);
+
+        window.location.href = '../user/user.html'
+    })
+    .catch(error => {
+        console.error('error : ', error);
+    })
+};

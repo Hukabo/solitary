@@ -167,6 +167,29 @@ main p {
     margin-left: 25px;
 }
 
+.btn-container {
+    margin-inline: auto 150px;
+    padding-top: 10px;
+}
+
+.btn-container button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--txt-light);
+    margin: 4px 2px;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.btn-container button:hover {
+    background-color: var(--txt-grey);
+}
+
+
+.display-none {
+    display: none;
+}
+
 #title {
     font-weight: 400;
 }

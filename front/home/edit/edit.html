@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solitary's Recipe</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1 onclick="window.location.href='../home.html'">Own's Recipes</h1>
+    </header>
+    <main>
+        <form id="postForm" enctype="multipart/form-data">
+            <div id="category">
+                <label for="foodType">카테고리 : <select id="foodType" name="foodType">
+                    <option value="korean">한식</option>
+                    <option value="western">양식</option>
+                    <option value="chinese">중식</option>
+                    <option value="japanese">일식</option>
+                    <option value="other">기타</option>
+                </select></label>
+            </div>
+            <input type="text" id="postTitle" placeholder="레시피 제목">
+            <textarea id="postContent" placeholder="레시피를 작성해주세요."></textarea>
+            <div id="submit-container">
+                <div id="image_container"></div>
+                <div id="divide">
+                    <div id="img-btn"><label for="postImage">이미지</label></div>
+                    <button type="submit">수정</button>
+                </div>
+            </div>
+            <input type="file" id="postImage" accept="image/jpeg">
+        </form>
+    </main>
+    <script src="edit.js"></script>
+</body>
+</html>
